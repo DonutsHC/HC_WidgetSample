@@ -5,7 +5,7 @@
 
         <!-- Home-screen widget receiver -->
         <receiver
-            android:name="com.RayOfGames.WidgetSample.GameWidgetProvider"
+            android:name="com.HC.WidgetSample.GameWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

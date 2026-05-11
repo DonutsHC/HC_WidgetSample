@@ -1,5 +1,5 @@
 {
-  "name": "com.rayofideas.widgetscriptsgenerator",
+  "name": "com.hc.widgetscriptsgenerator",
   "version": "1.0.0",
   "displayName": "Widget Scripts Generator",
   "description": "Editor tools to generate the bare minimum scripts for a functioning widget.",
@@ -10,7 +10,7 @@
   "licensesUrl": "",
   "keywords": [],
   "author": {
-    "name": "Ray of Ideas",
+    "name": "HC",
     "email": "",
     "url": ""
   }

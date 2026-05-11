@@ -1,4 +1,4 @@
-package com.RayOfGames.WidgetSample;
+package com.HC.WidgetSample;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;

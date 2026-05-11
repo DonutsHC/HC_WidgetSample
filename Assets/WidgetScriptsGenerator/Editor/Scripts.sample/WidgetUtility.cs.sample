@@ -18,7 +18,7 @@ public static class WidgetUtility
                     "android.content.ComponentName",
                     context,
                     new AndroidJavaClass(
-                        "com.RayOfGames.WidgetSample.GameWidgetProvider")))
+                        "com.HC.WidgetSample.GameWidgetProvider")))
                 {
                     intent.Call<AndroidJavaObject>("setComponent", componentName);
                     intent.Call<AndroidJavaObject>("setAction",
@@ -80,7 +80,7 @@ public static class WidgetUtility
                 using (var componentName = new AndroidJavaObject(
                     "android.content.ComponentName",
                     context,
-                    new AndroidJavaClass("com.RayOfGames.WidgetSample.GameWidgetProvider")))
+                    new AndroidJavaClass("com.HC.WidgetSample.GameWidgetProvider")))
                 {
                     // Request the system to pin the widget — shows a confirmation dialog
                     manager.Call<bool>("requestPinAppWidget", componentName, null, null);

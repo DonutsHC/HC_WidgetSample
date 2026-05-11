@@ -7,7 +7,7 @@ namespace WidgetScriptsGenerator.Editor
 {
     public class WidgetGeneratorWindow : EditorWindow
     {
-        const string PLACEHOLDER_PACKAGE = "com.RayOfGames.WidgetSample";
+        const string PLACEHOLDER_PACKAGE = "com.hc.widgetsample";
         const string PLUGINS_DEST = "Assets/Plugins/Android";
         const string ANDROIDLIB_FOLDER = "GameWidget.androidlib";
 
@@ -27,7 +27,7 @@ namespace WidgetScriptsGenerator.Editor
                     }
                 }
                 // Fallback 1: Package path
-                string packagePath = "Packages/com.rayofideas.widgetscriptsgenerator/Editor";
+                string packagePath = "Packages/com.hc.widgetscriptsgenerator/Editor";
                 string packageFull = Path.GetFullPath(packagePath).Replace('\\', '/');
                 if (Directory.Exists(packageFull))
                     return packageFull;
