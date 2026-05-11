@@ -1,0 +1,99 @@
+using System;
+using UnityEngine;
+
+public static class WidgetUtility
+{
+    public static void RequestWidgetUpdate()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        try
+        {
+            using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            using (var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+            using (var context = activity.Call<AndroidJavaObject>("getApplicationContext"))
+            using (var intent = new AndroidJavaObject("android.content.Intent",
+                       "com.unity3d.player.UnityPlayer"))
+            {
+                using (var componentName = new AndroidJavaObject(
+                    "android.content.ComponentName",
+                    context,
+                    new AndroidJavaClass(
+                        "com.RayOfGames.WidgetSample.GameWidgetProvider")))
+                {
+                    intent.Call<AndroidJavaObject>("setComponent", componentName);
+                    intent.Call<AndroidJavaObject>("setAction",
+                        "android.appwidget.action.APPWIDGET_UPDATE");
+
+                    using (var appWidgetManager = new AndroidJavaClass(
+                        "android.appwidget.AppWidgetManager"))
+                    using (var manager =
+                        appWidgetManager.CallStatic<AndroidJavaObject>("getInstance",
+                            context))
+                    {
+                        int[] ids = manager.Call<int[]>("getAppWidgetIds", componentName);
+                        intent.Call<AndroidJavaObject>("putExtra",
+                            "appWidgetIds", ids);
+                    }
+
+                    context.Call("sendBroadcast", intent);
+                    Debug.Log("[WidgetUtility] Widget update broadcast sent.");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"[WidgetUtility] Could not send widget update: {e.Message}");
+        }
+#endif
+    }
+
+    public static void RequestPinWidget()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        try
+        {
+            // requestPinAppWidget requires API 26 (Android 8.0+)
+            using (var buildVersion = new AndroidJavaClass("android.os.Build$VERSION"))
+            {
+                int sdkInt = buildVersion.GetStatic<int>("SDK_INT");
+                if (sdkInt < 26)
+                {
+                    Debug.LogWarning("[WidgetUtility] Widget pinning requires Android 8.0+");
+                    return;
+                }
+            }
+
+            using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            using (var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+            using (var context = activity.Call<AndroidJavaObject>("getApplicationContext"))
+            using (var appWidgetManagerClass = new AndroidJavaClass("android.appwidget.AppWidgetManager"))
+            using (var manager = appWidgetManagerClass.CallStatic<AndroidJavaObject>("getInstance", context))
+            {
+                // Check if the launcher supports pinning widgets
+                bool canPin = manager.Call<bool>("isRequestPinAppWidgetSupported");
+                if (!canPin)
+                {
+                    Debug.LogWarning("[WidgetUtility] Launcher does not support pinning widgets.");
+                    return;
+                }
+
+                using (var componentName = new AndroidJavaObject(
+                    "android.content.ComponentName",
+                    context,
+                    new AndroidJavaClass("com.RayOfGames.WidgetSample.GameWidgetProvider")))
+                {
+                    // Request the system to pin the widget — shows a confirmation dialog
+                    manager.Call<bool>("requestPinAppWidget", componentName, null, null);
+                    Debug.Log("[WidgetUtility] Pin widget request sent.");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"[WidgetUtility] Could not request pin widget: {e.Message}");
+        }
+#else
+        Debug.Log("[WidgetUtility] Pin widget is only available on Android devices.");
+#endif
+    }
+}

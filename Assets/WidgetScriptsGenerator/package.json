@@ -1,0 +1,17 @@
+{
+  "name": "com.rayofideas.widgetscriptsgenerator",
+  "version": "1.0.0",
+  "displayName": "Widget Scripts Generator",
+  "description": "Editor tools to generate the bare minimum scripts for a functioning widget.",
+  "unity": "6000.3",
+  "unityRelease": "8f2",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "keywords": [],
+  "author": {
+    "name": "Ray of Ideas",
+    "email": "",
+    "url": ""
+  }
+}

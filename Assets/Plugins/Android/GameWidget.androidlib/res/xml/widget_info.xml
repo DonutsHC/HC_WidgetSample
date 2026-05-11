@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Widget metadata.
+    - minWidth/minHeight: 2x1 cells (each cell is ~73dp including margin)
+    - updatePeriodMillis: 1800000 = 30 minutes (Android minimum)
+    - The widget will also update immediately when Unity sends a broadcast.
+-->
+<appwidget-provider
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="110dp"
+    android:minHeight="40dp"
+    android:targetCellWidth="2"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="1800000"
+    android:initialLayout="@layout/widget_layout"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:previewLayout="@layout/widget_layout"
+    android:description="@string/widget_description" />

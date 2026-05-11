@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Widget layout for the game login tracker (2x1).
+    RemoteViews only supports a limited set of views:
+    FrameLayout, LinearLayout, RelativeLayout, ImageView, TextView, etc.
+-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+
+    <!-- Character image, fits inside widget without cropping -->
+    <ImageView
+        android:id="@+id/widget_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/widget_notok_1"
+        android:contentDescription="Game character"
+        android:scaleType="fitCenter" />
+
+    <!-- Streak text rendered as bitmap (for custom Lilita One font) -->
+    <ImageView
+        android:id="@+id/widget_text_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:contentDescription="Streak count" />
+
+</FrameLayout>
