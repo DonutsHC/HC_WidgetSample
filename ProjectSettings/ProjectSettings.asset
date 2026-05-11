@@ -168,7 +168,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.RayOfGames.WidgetSample
-    Standalone: com.DefaultCompany.2D-URP
+    Standalone: com.RayOfGames.WidgetSample
   buildNumber:
     Standalone: 0
     VisionOS: 0
